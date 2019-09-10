@@ -1,0 +1,43 @@
+<label class="uploader" ondragover="return false;"
+    [class.loaded]="loaded" 
+    [style.outlineColor]="dragging ? activeColor : baseColor"
+    (dragenter)="handleDragEnter()"
+    (dragleave)="handleDragLeave()"
+    (drop)="handleDrop($event)">
+    
+    <i class="icon icon-upload" 
+        [style.color]="dragging 
+            ? ((imageSrc.length > 0) ? overlayColor : activeColor)
+            : ((imageSrc.length > 0) ? overlayColor : baseColor)"></i>
+    
+    <img 
+        [src]="imageSrc" 
+        (load)="handleImageLoad()" 
+        [class.loaded]="imageLoaded"/>
+    
+  
+</label>
+  <input type="file" name="file" 
+        (change)="handleInputChange($event)">
+        <button 
+        (click)="submit()">Submit</button>
+          <button 
+        (click)="cancel()">Clear</button>
+
+       <table>
+         <tr>
+        <th>accountNumber</th>
+         <th>description</th>
+         <th>startBalance</th>
+         <th>mutation</th>
+         <th>endBalance</th>
+        </tr>
+         <tr *ngFor="let items of users">
+<td>{{items.accountNumber}}</td>
+<td>{{items.description}}</td>
+<td>{{items.startBalance}}</td>
+<td>{{items.mutation}}</td>
+<td>{{items.endBalance}}</td>
+         </tr>
+       </table>
+<router-outlet></router-outlet>
